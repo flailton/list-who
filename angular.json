@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "list-who"
+  "defaultProject": "list-who",
+  "cli": {
+    "analytics": false
+  }
 }

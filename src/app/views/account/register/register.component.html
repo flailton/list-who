@@ -1,0 +1,15 @@
+<div class="content text-center" role="main">
+    <form class="form-login">
+        <h1 class="h3 m-3 font-weight-normal">Cadastro</h1>
+        <label for="name" class="sr-only">Nome</label>
+        <input type="text" [(ngModel)]="requestRegister.name" name="name" class="form-control m-1" placeholder="Nome" required=""
+            autofocus="">
+        <label for="email" class="sr-only">Endereço de E-mail</label>
+        <input type="email" [(ngModel)]="requestRegister.email" name="email" class="form-control m-1" placeholder="Endereço de E-mail" required=""
+            autofocus="">
+        <label for="password" class="sr-only">Senha</label>
+        <input type="password" [(ngModel)]="requestRegister.password" name="password" class="form-control m-1" placeholder="Senha" required="">
+        <button class="btn btn-link btn-block m-2" type="button" [routerLink]="['/login']">Voltar</button>
+        <button class="btn btn-primary btn-block m-2" (click)="register()"  type="submit">Criar conta</button>
+    </form>
+</div>

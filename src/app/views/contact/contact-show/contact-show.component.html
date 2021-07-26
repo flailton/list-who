@@ -1,0 +1,50 @@
+<div class="content" role="main">
+    <div class="container">
+        <h1 class="h3 m-3 font-weight-normal text-center">Visualizar Contato</h1>
+        <div class="row">
+            <div class="col-md-6 font-weight-bold text-right">
+                Nome:
+            </div>
+            <div class="col-md-6 text-left">
+                {{ contact.name }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 font-weight-bold text-right">
+                E-mail:
+            </div>
+            <div class="col-md-6 text-left">
+                {{ contact.email }}
+            </div>
+        </div>
+        <div *ngFor="let link of contact.links; let i = index" class="row">
+            <div class="col-md-6 font-weight-bold text-right">
+                {{ link.link_type.name }}:
+            </div>
+            <div class="col-md-6 text-left">
+                {{ link.link }}
+            </div>
+        </div>
+        <div *ngIf="contact.phones !== undefined && contact.phones.length > 0" class="row">
+            <div class="col-md-6 font-weight-bold text-right">
+                Telefone(s):
+            </div>
+            <div class="col-md-6 text-left">
+                <div *ngFor="let phone of contact.phones" class="row">
+                    <div class="col">
+                        {{ phone.phone }} ({{ phone.phone_type.name }})
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-2 text-right">
+                <button class="btn btn-link btn-block m-2" type="button" [routerLink]="['/contatos']">Voltar</button>
+            </div>
+            <div class="col-md-4 text-left">
+                <button class="btn btn-primary btn-block m-2" type="button"
+                    [routerLink]="['/contatos/editar', this.contact.id]">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>

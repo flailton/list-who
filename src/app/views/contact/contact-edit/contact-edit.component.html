@@ -1,0 +1,78 @@
+<div class="content" role="main">
+    <div class="container">
+        <h1 class="h3 m-3 font-weight-normal text-center">{{ this.title }} Contato</h1>
+        <div class="row">
+            <div class="col-md-6 font-weight-bold text-right">
+                Nome:
+            </div>
+            <div class="col-md-6 text-left">
+                <input [(ngModel)]="contact.name" type="text" name="name" class="form-control m-1"
+                    placeholder="Nome do contato" required="" autofocus="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 font-weight-bold text-right">
+                E-mail:
+            </div>
+            <div class="col-md-6 text-left">
+                <input [(ngModel)]="contact.email" type="email" name="email" class="form-control m-1"
+                    placeholder="Endereço de E-mail" required="" autofocus="">
+            </div>
+        </div>
+        <div *ngFor="let link of contact.links; let i = index" class="row">
+            <div class="col-md-6 font-weight-bold text-right">
+                {{ link.link_type.name }}:
+            </div>
+            <div class="col-md-6 text-left">
+                <input [(ngModel)]="contact.links[i].link" type="text" name="links[]" class="form-control m-1"
+                    placeholder="Link do {{ link.link_type.name }}" required="" autofocus="">
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-md-4 offset-md-5 font-weight-bold text-right">
+                <input [(ngModel)]="phoneAdd.phone" name="phone" class="form-control" placeholder="Número Telefônico" required="" />
+            </div>
+            <div class="col-md-2 font-weight-bold text-right">
+                <select [(ngModel)]="phone_type_id" class="form-select" aria-label="Tipo Telefone" name="phone_type_id">
+                    <option value="0">- Telefone -</option>
+                    <option *ngFor="let phone_type of phone_types" [value]="phone_type.id">{{ phone_type.name }}</option>
+                </select>
+            </div>
+            <div class="col-md-1">
+                <a href="javascript: void(0)" (click)='addPhone()' class="text-dark" title="Adicionar número de telefone">
+                    <i class="fa fa-plus-circle fa-2x text-primary"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 font-weight-bold text-right">
+                Telefone(s):
+            </div>
+            <div class="col-md-6 text-left">
+                <div *ngFor="let phone of contact.phones; let i = index" class="row m-1">
+                    <div class="col-md-6 font-weight-bold text-right">
+                        <input [(ngModel)]="phone.phone" name="phone" class="form-control" placeholder="Número Telefônico" required="" />
+                    </div>
+                    <div class="col-md-5 font-weight-bold text-right">
+                        <select [(ngModel)]="phone.phone_type_id" class="form-select" aria-label="Tipo Telefone" name="phone_type_id">
+                            <option *ngFor="let phone_type of phone_types" [value]="phone_type.id">{{ phone_type.name }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="javascript: void(0)" (click)='removePhone(phone)' class="text-dark" title="Remover telefone">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-2 text-right">
+                <button class="btn btn-link btn-block m-2" type="button" [routerLink]="['/contatos']">Voltar</button>
+            </div>
+            <div class="col-md-4 text-left">
+                <button class="btn btn-primary btn-block m-2" (click)="contact.id? update(contact) : store(contact)" type="submit">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
