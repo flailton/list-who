@@ -1,0 +1,16 @@
+<div *ngIf="!this.isAuthenticated" class="content text-center" role="main">
+    <form class="form-login">
+        <h1 class="h3 m-3 font-weight-normal">Login</h1>
+
+        <label for="inputEmail" class="sr-only">Endereço de E-mail</label>
+        <input [(ngModel)]="userEmail" type="email" name="email" class="form-control m-1"
+            placeholder="Endereço de E-mail" required="" autofocus="">
+
+        <label for="inputPassword" class="sr-only">Senha</label>
+        <input [(ngModel)]="userPassword" type="password" name="password" class="form-control m-1"
+            placeholder="Senha" required="">
+
+        <button class="btn btn-link btn-block m-2" type="button" [routerLink]="['/register']">Criar conta</button>
+        <button (click)="login()" class="btn btn-primary btn-block m-2" type="submit">Login</button>
+    </form>
+</div>
