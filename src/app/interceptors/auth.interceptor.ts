@@ -31,7 +31,19 @@ export class AuthInterceptor implements HttpInterceptor {
             this.authService.clearToken();
             this.router.navigate(['login']);
           }
-          return throwError({'errors': [response.error['errors'].join('<br/>')]});
+          
+          let msg = '';
+          if(response.error['errors'] !== undefined){
+            let fields = Object.getOwnPropertyNames(response.error['errors']);
+            fields.forEach((value) => {
+              let key = value as keyof typeof response.error['errors'];
+              msg += response.error['errors'][key].join('<br/>');
+            });
+          } else {
+            msg = response.error['message'];
+          }
+          
+          return throwError({'errors': [msg]});
         })
       );
   }

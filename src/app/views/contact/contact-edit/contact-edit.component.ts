@@ -51,6 +51,8 @@ export class ContactEditComponent implements OnInit {
         this.indexPhoneTypes();
       },
         error => {
+          alert(error.errors.join(' <br/> '));
+          this.router.navigate(['contatos']);
         });
     } else {
       this.contact.links = new Array<Link>();
@@ -68,19 +70,30 @@ export class ContactEditComponent implements OnInit {
       this.router.navigate(['contatos']);
     },
       error => {
-        alert(error.errors.join('<br/>'));
+        alert(error.errors.join(' <br/> '));
       });
   }
 
   public update(contact: Contact): void {
-    contact.links = contact.links.filter(value => value.link !== undefined && value.link.trim() !== '');
+    var links = new Array<Link>();
+    
+    links = contact.links.filter(value => value.link !== undefined && value.link.trim() !== '');
+    
+    var contactUpdate = new Contact(
+      contact.id,
+      contact.user,
+      contact.name,
+      contact.email,
+      links,
+      contact.phones
+    );
 
-    this.contactService.update(contact).subscribe(data => {
+    this.contactService.update(contactUpdate).subscribe(data => {
       this.contact = data;
       this.router.navigate(['contatos']);
     },
       error => {
-        alert(error.errors.join('<br/>'));
+        alert(error.errors.join(' <br/> '));
       });
   }
 
@@ -89,6 +102,7 @@ export class ContactEditComponent implements OnInit {
       this.phone_types = data;
     },
       error => {
+        alert(error.errors.join(' <br/> '));
       });
   }
 
@@ -112,17 +126,18 @@ export class ContactEditComponent implements OnInit {
       });
     },
       error => {
+        alert(error.errors.join(' <br/> '));
       });
   }
 
   public addPhone(): void {
     var canAdd = true;
-    if(this.phoneAdd.phone === undefined || this.phoneAdd.phone.trim() === ''){
+    if (this.phoneAdd.phone === undefined || this.phoneAdd.phone.trim() === '') {
       alert('O número telefônico não pode estar vazio!');
       return;
     }
 
-    if(this.phoneAdd.phone_type_id === undefined || this.phoneAdd.phone_type_id === 0){
+    if (this.phone_type_id === undefined || this.phone_type_id === 0) {
       alert('O tipo do número telefônico não pode estar vazio!');
       return;
     }
