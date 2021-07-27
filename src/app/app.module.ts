@@ -20,6 +20,8 @@ import { ContactEditComponent } from './views/contact/contact-edit/contact-edit.
 import { PhoneTypeService } from './services/phoneType.service';
 import { LinkTypeService } from './services/linkType.service';
 
+import { NgxMaskModule } from 'ngx-mask';
+
 @NgModule({
   declarations: [
     LoginComponent,
@@ -36,6 +38,9 @@ import { LinkTypeService } from './services/linkType.service';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false
+    })
   ],
   providers: [
     AccountService,

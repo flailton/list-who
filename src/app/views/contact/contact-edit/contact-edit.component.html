@@ -30,7 +30,7 @@
         </div>
         <div class="row m-1">
             <div class="col-md-4 offset-md-5 font-weight-bold text-right">
-                <input [(ngModel)]="phoneAdd.phone" name="phone" class="form-control" placeholder="Número Telefônico" required="" />
+                <input [(ngModel)]="phoneAdd.phone" name="phone" class="form-control" placeholder="Número Telefônico" required="" mask="(00) 00000-0000 || (00) 0000-0000" />
             </div>
             <div class="col-md-2 font-weight-bold text-right">
                 <select [(ngModel)]="phone_type_id" class="form-select" aria-label="Tipo Telefone" name="phone_type_id">
@@ -51,7 +51,7 @@
             <div class="col-md-6 text-left">
                 <div *ngFor="let phone of contact.phones; let i = index" class="row m-1">
                     <div class="col-md-6 font-weight-bold text-right">
-                        <input [(ngModel)]="phone.phone" name="phone" class="form-control" placeholder="Número Telefônico" required="" />
+                        <input [(ngModel)]="phone.phone" name="phone" class="form-control" placeholder="Número Telefônico" required="" mask="(00) 00000-0000 || (00) 0000-0000" />
                     </div>
                     <div class="col-md-5 font-weight-bold text-right">
                         <select [(ngModel)]="phone.phone_type_id" class="form-select" aria-label="Tipo Telefone" name="phone_type_id">
